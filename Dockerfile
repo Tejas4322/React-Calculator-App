@@ -1,10 +1,8 @@
-FROM node:18.20-alpine3.19
+FROM node:20-alpine
 
 WORKDIR /app
 
-COPY ./package.json .
-
-COPY ./yarn.lock .
+COPY package.json yarn.lock ./
 
 RUN yarn install
 
@@ -12,5 +10,7 @@ COPY . .
 
 EXPOSE 5173
 
-CMD [ "yarn" , "dev"]
+ENV NODE_ENV = development
+
+CMD [ "yarn","dev"]
 
